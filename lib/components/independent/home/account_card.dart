@@ -26,8 +26,8 @@ enum AttendanceStatus {
 }
 
 class _AccountCardState extends State<AccountCard> {
-  bool _isDoingClock = false;
-  AttendanceStatus _attendanceStatus = AttendanceStatus.notClockedIn;
+  final bool _isDoingClock = false;
+  final AttendanceStatus _attendanceStatus = AttendanceStatus.notClockedIn;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class _AccountCardState extends State<AccountCard> {
                               Icons.tour,
                             ),
                             AttendanceStatus.clockedOut => const Icon(
-                              Icons.check,
+                              Icons.verified,
                             ),
                           },
                   tooltip: switch (_attendanceStatus) {
@@ -190,30 +190,14 @@ class _AccountCardState extends State<AccountCard> {
     );
   }
 
+  /// Handle clock actions
+  /// Note: Some auto clock platform have provided the ability to force clock
+  /// again, but I don't think this is a must have ability, so, the force clock
+  /// will do develop, but not right now, it will later than important and mainly
+  /// developments.
+  /// And, this function should not return any thing but just render something
+  /// like snakebar to show the message of the result of the network requests :0
   Future<void> _handleClockAction() async {
-    setState(() => _isDoingClock = !_isDoingClock);
 
-    ////////////////////
-    /// HTTP REQUEST ///
-    ////////////////////
-    await Future.delayed(Durations.extralong4);
-
-    if (_attendanceStatus == AttendanceStatus.notClockedIn) {
-      setState(() => _attendanceStatus = AttendanceStatus.clockedInNeedOut);
-    }
-
-    setState(() => _isDoingClock = !_isDoingClock);
-
-    await Future.delayed(Durations.extralong4);
-
-    setState(() => _isDoingClock = !_isDoingClock);
-
-    await Future.delayed(Durations.extralong4);
-
-    if (_attendanceStatus == AttendanceStatus.clockedInNeedOut) {
-      setState(() => _attendanceStatus = AttendanceStatus.clockedOut);
-    }
-
-    setState(() => _isDoingClock = !_isDoingClock);
   }
 }
