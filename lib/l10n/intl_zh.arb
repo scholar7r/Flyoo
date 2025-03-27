@@ -54,5 +54,7 @@
     "attendance": "考勤查询",
     "joinGroup": "加入讨论组",
     "locate": "定位",
-    "editLog": "编辑日志"
+    "editLog": "编辑日志",
+    "clockedIn": "已签到",
+    "clockedOut": "已签退"
 }

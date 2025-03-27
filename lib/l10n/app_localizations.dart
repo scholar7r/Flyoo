@@ -430,6 +430,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Write log'**
   String get editLog;
+
+  /// No description provided for @clockedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Clocked in'**
+  String get clockedIn;
+
+  /// No description provided for @clockedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Clocked out'**
+  String get clockedOut;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

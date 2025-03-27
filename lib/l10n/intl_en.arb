@@ -54,5 +54,7 @@
     "attendance": "Attendance",
     "joinGroup": "Join in chat",
     "locate": "Locate",
-    "editLog": "Write log"
+    "editLog": "Write log",
+    "clockedIn": "Clocked in",
+    "clockedOut": "Clocked out"
 }

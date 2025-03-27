@@ -175,4 +175,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get editLog => 'Write log';
+
+  @override
+  String get clockedIn => 'Clocked in';
+
+  @override
+  String get clockedOut => 'Clocked out';
 }

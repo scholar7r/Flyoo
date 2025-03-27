@@ -175,4 +175,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get editLog => '编辑日志';
+
+  @override
+  String get clockedIn => '已签到';
+
+  @override
+  String get clockedOut => '已签退';
 }
