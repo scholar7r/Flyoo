@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flyoo/l10n/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
-import 'package:flyoo/providers/appearance_provider.dart';
 import 'package:flyoo/providers/endpoint_provider.dart';
 import 'package:flyoo/providers/preferences_provider.dart';
 import 'package:flyoo/screens/home_screen.dart';
@@ -37,9 +36,11 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => PreferencesProvider()),
-        ChangeNotifierProvider(create: (_) => AppearanceProvider()),
+        // ChangeNotifierProvider(create: (_) => AppearanceProvider()),
         ChangeNotifierProvider(create: (_) => EndpointProvider()),
-        ChangeNotifierProvider(create: (_) => AccountProvider()..loadAccounts()),
+        ChangeNotifierProvider(
+          create: (_) => AccountProvider()..loadAccounts(),
+        ),
       ],
       child: const MainApp(),
     ),
@@ -88,7 +89,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     final preferencesProvider = Provider.of<PreferencesProvider>(context);
-    final appearanceProvider = Provider.of<AppearanceProvider>(context);
+    // final appearanceProvider = Provider.of<AppearanceProvider>(context);
 
     return MaterialApp(
       // Locale
@@ -101,17 +102,23 @@ class _MainAppState extends State<MainApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: preferencesProvider.locale,
 
-      // Material theme enable
+      // Defines light and dark themes
       theme: ThemeData(
-        useMaterial3: true,
-        // Create color scheme from seed, it will add color scheme swither later
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.tealAccent),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.tealAccent,
+          brightness: Brightness.dark,
+        ),
       ),
 
       // Dark theme or Light theme swither is defined in the settings page,
-      darkTheme: ThemeData(brightness: Brightness.dark),
-      themeMode:
-          appearanceProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      // themeMode:
+      //     appearanceProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      // FIXME: Anroid devices will have a short time color exchange, it should
+      // be fixed, so the theme mode switcher down now
+      themeMode: ThemeMode.system,
 
       home: Scaffold(
         body: PageView(
@@ -129,7 +136,7 @@ class _MainAppState extends State<MainApp> {
                   icon: Icon(Icons.dashboard),
                   label: AppLocalizations.of(context)!.home,
                 ),
-                
+
                 NavigationDestination(
                   icon: Icon(Icons.work),
                   label: AppLocalizations.of(context)!.workspace,
