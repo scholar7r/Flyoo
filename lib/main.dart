@@ -31,6 +31,8 @@ void main() async {
   // should be prepared.
   await databaseHelper.openFlyooDatabase();
 
+  // The function [runApp] needs more attention, when develop some services
+  // and some logical things should run before the [runApp].
   runApp(
     MultiProvider(
       providers: [
@@ -127,10 +129,12 @@ class _MainAppState extends State<MainApp> {
                   icon: Icon(Icons.dashboard),
                   label: AppLocalizations.of(context)!.home,
                 ),
+                
                 NavigationDestination(
                   icon: Icon(Icons.work),
                   label: AppLocalizations.of(context)!.workspace,
                 ),
+
                 NavigationDestination(
                   icon: Icon(Icons.settings),
                   label: AppLocalizations.of(context)!.settings,
