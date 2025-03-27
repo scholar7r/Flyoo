@@ -18,9 +18,16 @@ class AccountCard extends StatefulWidget {
   State<AccountCard> createState() => _AccountCardState();
 }
 
+enum AttendanceStatus {
+  notClockedIn,
+  clockedInNoNeedOut,
+  clockedInNeedOut,
+  clockedOut,
+}
+
 class _AccountCardState extends State<AccountCard> {
-  bool _isClockPending = false;
-  bool _isClockIn = true;
+  bool _isDoingClock = false;
+  AttendanceStatus _attendanceStatus = AttendanceStatus.notClockedIn;
 
   @override
   Widget build(BuildContext context) {
@@ -51,30 +58,36 @@ class _AccountCardState extends State<AccountCard> {
               children: [
                 // This IconButton provides a way to act the clock-in event
                 IconButton(
-                  onPressed: () async {
-                    setState(() {
-                      _isClockPending = !_isClockPending;
-                    });
-
-                    await Future.delayed(Durations.extralong4);
-
-                    setState(() {
-                      _isClockPending = !_isClockPending;
-                      _isClockIn = !_isClockIn;
-                    });
-                  },
+                  onPressed: _isDoingClock ? null : _handleClockAction,
                   icon:
-                      _isClockPending
+                      _isDoingClock
                           ? CircularProgressIndicator(
                             constraints: BoxConstraints.tight(Size.square(24)),
                           )
-                          : _isClockIn
-                          ? Icon(Icons.flag)
-                          : Icon(Icons.tour),
-                  tooltip:
-                      _isClockIn
-                          ? AppLocalizations.of(context)!.clockIn
-                          : AppLocalizations.of(context)!.clockOut,
+                          : switch (_attendanceStatus) {
+                            AttendanceStatus.notClockedIn => const Icon(
+                              Icons.flag,
+                            ),
+                            AttendanceStatus.clockedInNoNeedOut => const Icon(
+                              Icons.check,
+                            ),
+                            AttendanceStatus.clockedInNeedOut => const Icon(
+                              Icons.tour,
+                            ),
+                            AttendanceStatus.clockedOut => const Icon(
+                              Icons.check,
+                            ),
+                          },
+                  tooltip: switch (_attendanceStatus) {
+                    AttendanceStatus.notClockedIn =>
+                      AppLocalizations.of(context)!.clockIn,
+                    AttendanceStatus.clockedInNoNeedOut =>
+                      AppLocalizations.of(context)!.clockedIn,
+                    AttendanceStatus.clockedInNeedOut =>
+                      AppLocalizations.of(context)!.clockOut,
+                    AttendanceStatus.clockedOut =>
+                      AppLocalizations.of(context)!.clockedOut,
+                  },
                 ),
 
                 // This PopupMenuButton provides more functional buttons, like
@@ -175,5 +188,32 @@ class _AccountCardState extends State<AccountCard> {
         ),
       ),
     );
+  }
+
+  Future<void> _handleClockAction() async {
+    setState(() => _isDoingClock = !_isDoingClock);
+
+    ////////////////////
+    /// HTTP REQUEST ///
+    ////////////////////
+    await Future.delayed(Durations.extralong4);
+
+    if (_attendanceStatus == AttendanceStatus.notClockedIn) {
+      setState(() => _attendanceStatus = AttendanceStatus.clockedInNeedOut);
+    }
+
+    setState(() => _isDoingClock = !_isDoingClock);
+
+    await Future.delayed(Durations.extralong4);
+
+    setState(() => _isDoingClock = !_isDoingClock);
+
+    await Future.delayed(Durations.extralong4);
+
+    if (_attendanceStatus == AttendanceStatus.clockedInNeedOut) {
+      setState(() => _attendanceStatus = AttendanceStatus.clockedOut);
+    }
+
+    setState(() => _isDoingClock = !_isDoingClock);
   }
 }
