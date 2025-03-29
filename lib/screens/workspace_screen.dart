@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flyoo/components/independent/workspace/image_uploader.dart';
 import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
+import 'package:flyoo/providers/settings_provider.dart';
 import 'package:flyoo/services/security/information_secure.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
   @override
   Widget build(BuildContext context) {
     final accountProvider = Provider.of<AccountProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
 
     // Provide types for logs, and
     final List<String> logTypeChipLabels = [
@@ -63,7 +65,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                             return DropdownMenuItem<int>(
                               value: account.id,
                               child: Text(
-                                "${account.accountAlias} - ${securePhoneNumber(account.accountName)}",
+                                "${account.accountAlias} - ${settingsProvider.sensitiveVisible ? securePhoneNumber(account.accountName) : account.accountName}",
                               ),
                             );
                           }).toList(),

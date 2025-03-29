@@ -77,6 +77,6 @@ class _PreferencesSettingsScreenState extends State<PreferencesSettingsScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _selectedLanguageCode = Localizations.localeOf(context).languageCode;
+    _selectedLanguageCode = Provider.of<SettingsProvider>(context).languageCode;
   }
 }

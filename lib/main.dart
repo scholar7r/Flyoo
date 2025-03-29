@@ -6,7 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
 import 'package:flyoo/providers/settings_provider.dart';
-import 'package:flyoo/providers/shared_preferences_provider.dart';
 import 'package:flyoo/screens/home_screen.dart';
 import 'package:flyoo/screens/settings_screen.dart';
 import 'package:flyoo/screens/workspace_screen.dart';
@@ -20,6 +19,9 @@ void main() async {
   // Ensure flutter widgets loaded correctly
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Shared preferences initialize
+  final prefs = await SharedPreferences.getInstance();
+
   // Init database model for different OS
   // Android has it's own ways to handle with database factory, so when this
   // software running in Android, it's no need to modify `databaseFactory`
@@ -32,17 +34,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider(prefs)),
         ChangeNotifierProvider(create: (_) => AccountProvider()),
-        Provider<SharedPreferencesProvider>(
-          create:
-              (_) => SharedPreferencesProvider(SharedPreferences.getInstance()),
-        ),
-        StreamProvider(
-          create:
-              (context) => context.read<SharedPreferencesProvider>().prefsState,
-          initialData: null,
-        ),
       ],
       child: const MainApp(),
     ),
