@@ -3,16 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
-import 'package:flyoo/providers/endpoint_provider.dart';
-import 'package:flyoo/providers/preferences_provider.dart';
+import 'package:flyoo/providers/settings_provider.dart';
+import 'package:flyoo/providers/shared_preferences_provider.dart';
 import 'package:flyoo/screens/home_screen.dart';
 import 'package:flyoo/screens/settings_screen.dart';
 import 'package:flyoo/screens/workspace_screen.dart';
-import 'package:flyoo/services/database_helper.dart';
+import 'package:flyoo/services/persistence/database_helper.dart';
 import 'package:logger/web.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
@@ -26,20 +27,21 @@ void main() async {
     databaseFactory = databaseFactoryFfi;
   }
 
-  // When launch this software, the database connection and object to access
-  // should be prepared.
-  await databaseHelper.openFlyooDatabase();
-
   // The function [runApp] needs more attention, when develop some services
   // and some logical things should run before the [runApp].
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PreferencesProvider()),
-        // ChangeNotifierProvider(create: (_) => AppearanceProvider()),
-        ChangeNotifierProvider(create: (_) => EndpointProvider()),
-        ChangeNotifierProvider(
-          create: (_) => AccountProvider()..loadAccounts(),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        ChangeNotifierProvider(create: (_) => AccountProvider()),
+        Provider<SharedPreferencesProvider>(
+          create:
+              (_) => SharedPreferencesProvider(SharedPreferences.getInstance()),
+        ),
+        StreamProvider(
+          create:
+              (context) => context.read<SharedPreferencesProvider>().prefsState,
+          initialData: null,
         ),
       ],
       child: const MainApp(),
@@ -88,8 +90,8 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final preferencesProvider = Provider.of<PreferencesProvider>(context);
-    // final appearanceProvider = Provider.of<AppearanceProvider>(context);
+    // final sharedPrefs = context.watch<SharedPreferences>();
+    final settingsProvider = Provider.of<SettingsProvider>(context);
 
     return MaterialApp(
       // Locale
@@ -100,7 +102,13 @@ class _MainAppState extends State<MainApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: preferencesProvider.locale,
+      // locale: preferencesProvider.locale,
+      locale: () {
+        final parts = settingsProvider.languageCode.split('-');
+        return parts.length == 2
+            ? Locale(parts[0], parts[1])
+            : Locale(parts[0]);
+      }(),
 
       // Defines light and dark themes
       theme: ThemeData(
