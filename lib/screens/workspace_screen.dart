@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyoo/components/independent/workspace/image_uploader.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
 import 'package:flyoo/services/security/information_secure.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +63,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                             return DropdownMenuItem<int>(
                               value: account.id,
                               child: Text(
-                                "${account.alias} - ${securePhoneNumber(account.name)}",
+                                "${account.accountAlias} - ${securePhoneNumber(account.accountName)}",
                               ),
                             );
                           }).toList(),

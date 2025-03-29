@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyoo/components/independent/home/account_add_dialog.dart';
 import 'package:flyoo/components/independent/home/account_card.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
             context: context,
             builder: (context) => AccountAddDialog(),
           );
-          await accountProvider.loadAccounts();
         },
         child: Icon(Icons.add),
       ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
-import 'package:flyoo/screens/settings/appearance/appearance_settings_screen.dart';
-import 'package:flyoo/screens/settings/network/network_settings_screen.dart';
-import 'package:flyoo/screens/settings/preferences/preferences_settings_screen.dart';
-import 'package:flyoo/screens/settings/sync/sync_settings_screen.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
+import 'package:flyoo/screens/settings_screens/network_settings_screen.dart';
+import 'package:flyoo/screens/settings_screens/preferences_settings_screen.dart';
+import 'package:flyoo/screens/settings_screens/sync_settings_screen.dart';
 import 'package:flyoo/utilities/web_url_launcher.dart';
 
 class SettingsItemList extends StatelessWidget {
@@ -29,7 +28,7 @@ class SettingsItemList extends StatelessWidget {
           onTap:
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AppearanceSettingsScreen()),
+                MaterialPageRoute(builder: (context) => Placeholder()),
               ),
         ),
 
