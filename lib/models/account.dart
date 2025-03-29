@@ -1,13 +1,13 @@
 class Account {
   final int? id;
-  final String alias;
-  final String name;
-  final String digest;
+  final String accountAlias;
+  final String accountName;
+  final String accountPass;
 
   const Account({
+    required this.accountAlias,
+    required this.accountName,
+    required this.accountPass,
     this.id,
-    required this.alias,
-    required this.name,
-    required this.digest,
   });
 }
