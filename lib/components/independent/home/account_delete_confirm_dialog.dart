@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/models/account.dart';
 import 'package:flyoo/providers/account_provider.dart';
 import 'package:provider/provider.dart';
@@ -7,10 +7,7 @@ import 'package:provider/provider.dart';
 class AccountDeleteConfirmDialog extends StatelessWidget {
   final Account account;
 
-  const AccountDeleteConfirmDialog({
-    super.key,
-    required this.account,
-  });
+  const AccountDeleteConfirmDialog({super.key, required this.account});
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +32,11 @@ class AccountDeleteConfirmDialog extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                   child: Text(AppLocalizations.of(context)!.cancel),
                 ),
-            
+
                 FilledButton(
                   onPressed: () async {
                     // Delete target account and refresh accounts
-                    await accountProvider.deleteAccount(account);
-                    await accountProvider.loadAccounts();
+                    await accountProvider.deleteAccount(account.id!);
 
                     if (!context.mounted) return;
                     Navigator.pop(context);

@@ -1,28 +1,28 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flyoo/main.dart';
 import 'package:flyoo/models/account.dart';
 
 class AccountProvider extends ChangeNotifier {
-  final List<Account> _accounts = [];
+  List<Account> _accounts = [];
+
+  AccountProvider() {
+    _queryAccounts();
+  }
 
   List<Account> get accounts => _accounts;
 
-  Future<void> addAccount(Account account) async {
+  Future<void> deleteAccount(int id) async {
+    await databaseHelper.deleteAccount(id);
+    _queryAccounts();
+  }
+
+  Future<void> insertAccount(Account account) async {
     await databaseHelper.insertAccount(account);
-    _accounts.add(account);
-    notifyListeners();
+    _queryAccounts();
   }
 
-  Future<void> deleteAccount(Account account) async {
-    await databaseHelper.deleteAccount(account.id!);
-    _accounts.removeWhere((account) => account.id == account.id);
-    notifyListeners();
-  }
-
-  Future<void> loadAccounts() async {
-    List<Account> accounts = await databaseHelper.queryAccounts();
-    _accounts.clear();
-    _accounts.addAll(accounts);
+  Future<void> _queryAccounts() async {
+    _accounts = await databaseHelper.queryAccounts();
     notifyListeners();
   }
 }

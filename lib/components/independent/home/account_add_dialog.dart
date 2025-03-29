@@ -1,11 +1,8 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
-import 'package:flyoo/main.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/models/account.dart';
-import 'package:flyoo/services/database_helper.dart';
+import 'package:flyoo/providers/account_provider.dart';
+import 'package:provider/provider.dart';
 
 class AccountAddDialog extends StatefulWidget {
   const AccountAddDialog({super.key});
@@ -15,15 +12,17 @@ class AccountAddDialog extends StatefulWidget {
 }
 
 class _AccountAddDialogState extends State<AccountAddDialog> {
-  final TextEditingController _aliasController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _digestController = TextEditingController();
-  String? _aliasErrorText;
-  String? _nameErrorText;
-  String? _digestErrorText;
+  final TextEditingController _accountAliasController = TextEditingController();
+  final TextEditingController _accountNameController = TextEditingController();
+  final TextEditingController _accountPassController = TextEditingController();
+  String? _accountAliasErrorText;
+  String? _accountNameErrorText;
+  String? _accountPassErrorText;
 
   @override
   Widget build(BuildContext context) {
+    final accountProvider = Provider.of<AccountProvider>(context);
+
     return Dialog(
       child: Padding(
         padding: const EdgeInsets.all(18),
@@ -44,9 +43,9 @@ class _AccountAddDialogState extends State<AccountAddDialog> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text(AppLocalizations.of(context)!.alias),
-                  errorText: _aliasErrorText,
+                  errorText: _accountAliasErrorText,
                 ),
-                controller: _aliasController,
+                controller: _accountAliasController,
               ),
             ),
 
@@ -56,9 +55,9 @@ class _AccountAddDialogState extends State<AccountAddDialog> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text(AppLocalizations.of(context)!.userName),
-                  errorText: _nameErrorText,
+                  errorText: _accountNameErrorText,
                 ),
-                controller: _nameController,
+                controller: _accountNameController,
                 keyboardType: TextInputType.phone,
               ),
             ),
@@ -69,10 +68,10 @@ class _AccountAddDialogState extends State<AccountAddDialog> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text(AppLocalizations.of(context)!.password),
-                  errorText: _digestErrorText,
+                  errorText: _accountPassErrorText,
                 ),
                 obscureText: true,
-                controller: _digestController,
+                controller: _accountPassController,
               ),
             ),
 
@@ -91,49 +90,47 @@ class _AccountAddDialogState extends State<AccountAddDialog> {
                     onPressed: () async {
                       /////////////////////Validation///////////////////////////
                       setState(() {
-                        _aliasErrorText =
-                            _aliasController.text.isEmpty
+                        _accountAliasErrorText =
+                            _accountAliasController.text.isEmpty
                                 ? AppLocalizations.of(context)!.emptyAlias
                                 : null;
-                        _nameErrorText =
+                        _accountNameErrorText =
                             RegExp(
                                   r'^1[3-9]\d{9}$',
-                                ).hasMatch(_nameController.text)
+                                ).hasMatch(_accountNameController.text)
                                 ? null
                                 : AppLocalizations.of(
                                   context,
                                 )!.notRegularPhoneNumber;
-                        _digestErrorText =
-                            _digestController.text.isEmpty
+                        _accountPassErrorText =
+                            _accountPassController.text.isEmpty
                                 ? AppLocalizations.of(context)!.emptyPassword
                                 : null;
                       });
 
-                      if (_aliasErrorText != null ||
-                          _nameErrorText != null ||
-                          _digestErrorText != null) {
+                      if (_accountAliasErrorText != null ||
+                          _accountNameErrorText != null ||
+                          _accountPassErrorText != null) {
                         return;
                       }
-                      //////////////////////////////////////////////////////////
-                      String alias = _aliasController.text;
-                      String name = _nameController.text;
-                      String digest =
-                          md5
-                              .convert(utf8.encode(_digestController.text))
-                              .toString();
 
-                      int effectedLines = await DatabaseHelper().insertAccount(
-                        Account(alias: alias, name: name, digest: digest)
+                      // int effectedLines = await DatabaseHelper().insertAccount(
+                      //   Account(
+                      //     accountAlias: _accountAliasController.text,
+                      //     accountName: _accountNameController.text,
+                      //     accountPass: md5Digest(_accountPassController.text),
+                      //   ),
+                      // );
+                      await accountProvider.insertAccount(
+                        Account(
+                          accountAlias: _accountAliasController.text,
+                          accountName: _accountNameController.text,
+                          accountPass: _accountPassController.text,
+                        ),
                       );
 
-                      if (effectedLines > 0) {
-                        logger.i('Insert a new account successed');
-                      } else {
-                        logger.e('Insert a new account is failed');
-                      }
-
                       if (!context.mounted) return;
-                      Navigator.pop(context, true);
+                      Navigator.pop(context);
                     },
                     child: Text(AppLocalizations.of(context)!.add),
                   ),

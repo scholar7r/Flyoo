@@ -3,9 +3,9 @@ import 'package:flyoo/components/independent/home/account_delete_confirm_dialog.
 import 'package:flyoo/components/independent/home/account_edit_dialog.dart';
 import 'package:flyoo/components/independent/home/attendance_dialog.dart';
 import 'package:flyoo/components/shared/locate_dialog.dart';
-import 'package:flyoo/l10n/app_localizations.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/models/account.dart';
-import 'package:flyoo/providers/preferences_provider.dart';
+import 'package:flyoo/providers/settings_provider.dart';
 import 'package:flyoo/services/security/information_secure.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +31,7 @@ class _AccountCardState extends State<AccountCard> {
 
   @override
   Widget build(BuildContext context) {
-    final preferencesProvider = Provider.of<PreferencesProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
 
     return Card(
       child: Padding(
@@ -43,13 +43,13 @@ class _AccountCardState extends State<AccountCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.account.alias,
+                  widget.account.accountAlias,
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  preferencesProvider.enableReplaceSensitive
-                      ? securePhoneNumber(widget.account.name)
-                      : widget.account.name,
+                  settingsProvider.sensitiveVisible
+                      ? securePhoneNumber(widget.account.accountName)
+                      : widget.account.accountName,
                 ),
               ],
             ),
