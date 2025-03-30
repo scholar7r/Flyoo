@@ -132,11 +132,11 @@ abstract class AppLocalizations {
   /// **'Preferences'**
   String get preferences;
 
-  /// No description provided for @appearance.
+  /// No description provided for @theme.
   ///
   /// In en, this message translates to:
-  /// **'Appearance'**
-  String get appearance;
+  /// **'Theme'**
+  String get theme;
 
   /// No description provided for @network.
   ///
@@ -443,6 +443,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clocked out'**
   String get clockedOut;
+
+  /// No description provided for @followSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow system'**
+  String get followSystem;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light mode'**
+  String get lightMode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

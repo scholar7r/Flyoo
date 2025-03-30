@@ -3,6 +3,7 @@ import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/screens/settings_screens/network_settings_screen.dart';
 import 'package:flyoo/screens/settings_screens/preferences_settings_screen.dart';
 import 'package:flyoo/screens/settings_screens/sync_settings_screen.dart';
+import 'package:flyoo/screens/settings_screens/theme_settings_screen.dart';
 import 'package:flyoo/utilities/web_url_launcher.dart';
 
 class SettingsItemList extends StatelessWidget {
@@ -24,11 +25,11 @@ class SettingsItemList extends StatelessWidget {
 
         ListTile(
           leading: Icon(Icons.web),
-          title: Text(AppLocalizations.of(context)!.appearance),
+          title: Text(AppLocalizations.of(context)!.theme),
           onTap:
               () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Placeholder()),
+                MaterialPageRoute(builder: (context) => ThemeSettingsScreen()),
               ),
         ),
 

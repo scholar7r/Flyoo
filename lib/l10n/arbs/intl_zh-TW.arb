@@ -5,7 +5,7 @@
     "noAvailableAccount": "沒有可用的帳戶",
     "addAcountTip": "請在儀表板新增帳戶",
     "preferences": "通用",
-    "appearance": "介面",
+    "theme": "主題",
     "network": "接口",
     "backup_sync": "備份 / 同步",
     "about": "關於",
@@ -56,5 +56,7 @@
     "locate": "定位",
     "editLog": "編輯日誌",
     "clockedIn": "已簽到",
-    "clockedOut": "已簽退"
+    "clockedOut": "已簽退",
+    "followSystem": "跟隨系統",
+    "lightMode": "淺色模式"
 }

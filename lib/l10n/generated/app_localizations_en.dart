@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preferences => 'Preferences';
 
   @override
-  String get appearance => 'Appearance';
+  String get theme => 'Theme';
 
   @override
   String get network => 'Endpoint';
@@ -181,4 +181,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clockedOut => 'Clocked out';
+
+  @override
+  String get followSystem => 'Follow system';
+
+  @override
+  String get lightMode => 'Light mode';
 }

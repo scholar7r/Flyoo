@@ -7,6 +7,7 @@ class SettingsProvider extends ChangeNotifier {
   bool _sensitiveVisible = true;
   bool _useBuiltinEndpoints = true;
   String _languageCode = "zh";
+  ThemeMode _themeMode = ThemeMode.system;
 
   SettingsProvider(this._prefs) {
     _initializePreferences();
@@ -14,6 +15,7 @@ class SettingsProvider extends ChangeNotifier {
 
   String get languageCode => _languageCode;
   bool get sensitiveVisible => _sensitiveVisible;
+  ThemeMode get themeMode => _themeMode;
   bool get useBuiltinEndpoints => _useBuiltinEndpoints;
 
   Future<void> setLanguageCode(String value) async {
@@ -28,6 +30,12 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> setThemeMode(ThemeMode mode) async {
+    _themeMode = mode;
+    await _prefs.setString("themeMode", mode.name);
+    notifyListeners();
+  }
+
   Future<void> setUseBuiltinEndpoints(bool value) async {
     _useBuiltinEndpoints = value;
     await _prefs.setBool("useBuiltinEndpoints", value);
@@ -38,6 +46,12 @@ class SettingsProvider extends ChangeNotifier {
     _languageCode = _prefs.getString("languageCode") ?? "zh";
     _sensitiveVisible = _prefs.getBool("sensitiveVisible") ?? true;
     _useBuiltinEndpoints = _prefs.getBool("useBuiltinEndpoints") ?? true;
+    String themeModeString =
+        _prefs.getString("themeMode") ?? ThemeMode.system.name;
+    _themeMode = ThemeMode.values.firstWhere(
+      (e) => e.name == themeModeString,
+      orElse: () => ThemeMode.system,
+    );
     notifyListeners();
   }
 }

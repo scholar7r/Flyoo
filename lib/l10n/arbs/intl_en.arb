@@ -5,7 +5,7 @@
     "noAvailableAccount": "No available Account",
     "addAcountTip": "Please add account",
     "preferences": "Preferences",
-    "appearance": "Appearance",
+    "theme": "Theme",
     "network": "Endpoint",
     "backup_sync": "Sync",
     "about": "About",
@@ -56,5 +56,7 @@
     "locate": "Locate",
     "editLog": "Write log",
     "clockedIn": "Clocked in",
-    "clockedOut": "Clocked out"
+    "clockedOut": "Clocked out",
+    "followSystem": "Follow system",
+    "lightMode": "Light mode"
 }

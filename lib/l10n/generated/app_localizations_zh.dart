@@ -27,7 +27,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get preferences => '通用';
 
   @override
-  String get appearance => '界面';
+  String get theme => '主题';
 
   @override
   String get network => '接口';
@@ -181,6 +181,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get clockedOut => '已签退';
+
+  @override
+  String get followSystem => '跟随系统';
+
+  @override
+  String get lightMode => '亮色模式';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -206,7 +212,7 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
   String get preferences => '通用';
 
   @override
-  String get appearance => '介面';
+  String get theme => '主題';
 
   @override
   String get network => '接口';
@@ -360,4 +366,10 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get clockedOut => '已簽退';
+
+  @override
+  String get followSystem => '跟隨系統';
+
+  @override
+  String get lightMode => '淺色模式';
 }

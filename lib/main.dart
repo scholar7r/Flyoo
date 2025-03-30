@@ -114,12 +114,8 @@ class _MainAppState extends State<MainApp> {
         ),
       ),
 
-      // Dark theme or Light theme swither is defined in the settings page,
-      // themeMode:
-      //     appearanceProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      // FIXME: Anroid devices will have a short time color exchange, it should
-      // be fixed, so the theme mode switcher down now
-      themeMode: ThemeMode.system,
+      // Dark theme or Light theme swither is defined in the settings page
+      themeMode: settingsProvider.themeMode,
 
       home: Scaffold(
         body: PageView(
