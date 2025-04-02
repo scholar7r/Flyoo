@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/models/account.dart';
 
 class AttendanceDialog extends StatefulWidget {
@@ -12,6 +13,8 @@ class AttendanceDialog extends StatefulWidget {
 class _AttendanceDialogState extends State<AttendanceDialog> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return AlertDialog(
+      title: Text(AppLocalizations.of(context)!.attendance),
+    );
   }
 }
