@@ -96,65 +96,29 @@ abstract class AppLocalizations {
     Locale('zh')
   ];
 
-  /// No description provided for @home.
-  ///
-  /// In en, this message translates to:
-  /// **'Dashboard'**
-  String get home;
-
-  /// No description provided for @settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings;
-
-  /// No description provided for @workspace.
-  ///
-  /// In en, this message translates to:
-  /// **'Workspace'**
-  String get workspace;
-
-  /// No description provided for @noAvailableAccount.
-  ///
-  /// In en, this message translates to:
-  /// **'No available Account'**
-  String get noAvailableAccount;
-
-  /// No description provided for @addAcountTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Please add account'**
-  String get addAcountTip;
-
-  /// No description provided for @preferences.
-  ///
-  /// In en, this message translates to:
-  /// **'Preferences'**
-  String get preferences;
-
-  /// No description provided for @theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
-
-  /// No description provided for @network.
-  ///
-  /// In en, this message translates to:
-  /// **'Endpoint'**
-  String get network;
-
-  /// No description provided for @backup_sync.
-  ///
-  /// In en, this message translates to:
-  /// **'Sync'**
-  String get backup_sync;
-
   /// No description provided for @about.
   ///
   /// In en, this message translates to:
   /// **'About'**
   String get about;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @accountDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get accountDeleteConfirm;
+
+  /// No description provided for @accountDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Account detail'**
+  String get accountDetail;
 
   /// No description provided for @add.
   ///
@@ -162,23 +126,17 @@ abstract class AppLocalizations {
   /// **'Submit'**
   String get add;
 
-  /// No description provided for @cancel.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// No description provided for @confirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get confirm;
-
   /// No description provided for @addAccount.
   ///
   /// In en, this message translates to:
   /// **'Add account'**
   String get addAccount;
+
+  /// No description provided for @addAcountTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add account'**
+  String get addAcountTip;
 
   /// No description provided for @alias.
   ///
@@ -186,41 +144,29 @@ abstract class AppLocalizations {
   /// **'Alias'**
   String get alias;
 
-  /// No description provided for @userName.
+  /// No description provided for @attendance.
   ///
   /// In en, this message translates to:
-  /// **'Username'**
-  String get userName;
+  /// **'Attendance'**
+  String get attendance;
 
-  /// No description provided for @password.
+  /// No description provided for @backup.
   ///
   /// In en, this message translates to:
-  /// **'Password'**
-  String get password;
+  /// **'Backup'**
+  String get backup;
 
-  /// No description provided for @language.
+  /// No description provided for @backup_sync.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
+  /// **'Sync'**
+  String get backup_sync;
 
-  /// No description provided for @darkMode.
+  /// No description provided for @backupDescription.
   ///
   /// In en, this message translates to:
-  /// **'Dark Mode'**
-  String get darkMode;
-
-  /// No description provided for @displayAccountDetail.
-  ///
-  /// In en, this message translates to:
-  /// **'Display account information'**
-  String get displayAccountDetail;
-
-  /// No description provided for @replaceAccountDetail.
-  ///
-  /// In en, this message translates to:
-  /// **'Replace sensitive information'**
-  String get replaceAccountDetail;
+  /// **'Back up data through WebDAV'**
+  String get backupDescription;
 
   /// No description provided for @builtinEndpoints.
   ///
@@ -234,203 +180,11 @@ abstract class AppLocalizations {
   /// **'Enable builtin endpoints'**
   String get bulitinEndpointsDecription;
 
-  /// No description provided for @edit.
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Edit'**
-  String get edit;
-
-  /// No description provided for @backup.
-  ///
-  /// In en, this message translates to:
-  /// **'Backup'**
-  String get backup;
-
-  /// No description provided for @backupDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Back up data through WebDAV'**
-  String get backupDescription;
-
-  /// No description provided for @restore.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore'**
-  String get restore;
-
-  /// No description provided for @restoreDescription.
-  ///
-  /// In en, this message translates to:
-  /// **'Recovering data through WebDAV'**
-  String get restoreDescription;
-
-  /// No description provided for @legalese.
-  ///
-  /// In en, this message translates to:
-  /// **'Flyoo is an auxiliary control software that benchmarks the AIA internship platform, providing various functions that facilitate users to upgrade their user experience.\n\nDisclaimers\n\nThis software is only for non-commercial purposes such as learning, communication, scientific research, etc. It is strictly prohibited to use this software for commercial purposes. Any commercial activities are unrelated to this software.\n©  2025 Flyoo, all rights reserved.'**
-  String get legalese;
-
-  /// No description provided for @emptyAlias.
-  ///
-  /// In en, this message translates to:
-  /// **'Alias can\'t be empty'**
-  String get emptyAlias;
-
-  /// No description provided for @emptyUserName.
-  ///
-  /// In en, this message translates to:
-  /// **'Username can\'t be empty'**
-  String get emptyUserName;
-
-  /// No description provided for @emptyPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Password can\'t be empty'**
-  String get emptyPassword;
-
-  /// No description provided for @notRegularPhoneNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Not a regular phone number'**
-  String get notRegularPhoneNumber;
-
-  /// No description provided for @clockIn.
-  ///
-  /// In en, this message translates to:
-  /// **'Clock In'**
-  String get clockIn;
-
-  /// No description provided for @clockOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Clock out'**
-  String get clockOut;
-
-  /// No description provided for @delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get delete;
-
-  /// No description provided for @accountDeleteConfirm.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure?'**
-  String get accountDeleteConfirm;
-
-  /// No description provided for @contentOrPrompt.
-  ///
-  /// In en, this message translates to:
-  /// **'Content / Prompt'**
-  String get contentOrPrompt;
-
-  /// No description provided for @generateContent.
-  ///
-  /// In en, this message translates to:
-  /// **'Generate Content'**
-  String get generateContent;
-
-  /// No description provided for @saveAsDraft.
-  ///
-  /// In en, this message translates to:
-  /// **'Save as Draft'**
-  String get saveAsDraft;
-
-  /// No description provided for @account.
-  ///
-  /// In en, this message translates to:
-  /// **'Account'**
-  String get account;
-
-  /// No description provided for @title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get title;
-
-  /// No description provided for @dailyLog.
-  ///
-  /// In en, this message translates to:
-  /// **'Daily Log'**
-  String get dailyLog;
-
-  /// No description provided for @weeklyLog.
-  ///
-  /// In en, this message translates to:
-  /// **'Weekly Log'**
-  String get weeklyLog;
-
-  /// No description provided for @monthlyLog.
-  ///
-  /// In en, this message translates to:
-  /// **'Monthly Log'**
-  String get monthlyLog;
-
-  /// No description provided for @visibilityLow.
-  ///
-  /// In en, this message translates to:
-  /// **'Visible to Teachers Only'**
-  String get visibilityLow;
-
-  /// No description provided for @visibilityMiddle.
-  ///
-  /// In en, this message translates to:
-  /// **'Visible to Teachers and Students Only'**
-  String get visibilityMiddle;
-
-  /// No description provided for @visibilityHigh.
-  ///
-  /// In en, this message translates to:
-  /// **'Visible to Everyone'**
-  String get visibilityHigh;
-
-  /// No description provided for @login.
-  ///
-  /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
-
-  /// No description provided for @accountDetail.
-  ///
-  /// In en, this message translates to:
-  /// **'Account detail'**
-  String get accountDetail;
-
-  /// No description provided for @clockInAndClockOut.
-  ///
-  /// In en, this message translates to:
-  /// **'Clock in & clock out'**
-  String get clockInAndClockOut;
-
-  /// No description provided for @logs.
-  ///
-  /// In en, this message translates to:
-  /// **'Logs'**
-  String get logs;
-
-  /// No description provided for @attendance.
-  ///
-  /// In en, this message translates to:
-  /// **'Attendance'**
-  String get attendance;
-
-  /// No description provided for @joinGroup.
-  ///
-  /// In en, this message translates to:
-  /// **'Join in chat'**
-  String get joinGroup;
-
-  /// No description provided for @locate.
-  ///
-  /// In en, this message translates to:
-  /// **'Locate'**
-  String get locate;
-
-  /// No description provided for @editLog.
-  ///
-  /// In en, this message translates to:
-  /// **'Write log'**
-  String get editLog;
+  /// **'Cancel'**
+  String get cancel;
 
   /// No description provided for @clockedIn.
   ///
@@ -444,17 +198,263 @@ abstract class AppLocalizations {
   /// **'Clocked out'**
   String get clockedOut;
 
+  /// No description provided for @clockIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock In'**
+  String get clockIn;
+
+  /// No description provided for @clockInAndClockOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock in & clock out'**
+  String get clockInAndClockOut;
+
+  /// No description provided for @clockOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock out'**
+  String get clockOut;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @contentOrPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Content / Prompt'**
+  String get contentOrPrompt;
+
+  /// No description provided for @dailyLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Log'**
+  String get dailyLog;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @displayAccountDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Display account information'**
+  String get displayAccountDetail;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @editLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Write log'**
+  String get editLog;
+
+  /// No description provided for @emptyAlias.
+  ///
+  /// In en, this message translates to:
+  /// **'Alias can\'t be empty'**
+  String get emptyAlias;
+
+  /// No description provided for @emptyPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password can\'t be empty'**
+  String get emptyPassword;
+
+  /// No description provided for @emptyUserName.
+  ///
+  /// In en, this message translates to:
+  /// **'Username can\'t be empty'**
+  String get emptyUserName;
+
   /// No description provided for @followSystem.
   ///
   /// In en, this message translates to:
   /// **'Follow system'**
   String get followSystem;
 
+  /// No description provided for @generateContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Content'**
+  String get generateContent;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get home;
+
+  /// No description provided for @joinGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Join in chat'**
+  String get joinGroup;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @legalese.
+  ///
+  /// In en, this message translates to:
+  /// **'Flyoo is an auxiliary control software that benchmarks the AIA internship platform, providing various functions that facilitate users to upgrade their user experience.\n\nDisclaimers\n\nThis software is only for non-commercial purposes such as learning, communication, scientific research, etc. It is strictly prohibited to use this software for commercial purposes. Any commercial activities are unrelated to this software.\n©  2025 Flyoo, all rights reserved.'**
+  String get legalese;
+
   /// No description provided for @lightMode.
   ///
   /// In en, this message translates to:
   /// **'Light mode'**
   String get lightMode;
+
+  /// No description provided for @locate.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate'**
+  String get locate;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @logs.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs'**
+  String get logs;
+
+  /// No description provided for @monthlyLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Log'**
+  String get monthlyLog;
+
+  /// No description provided for @network.
+  ///
+  /// In en, this message translates to:
+  /// **'Endpoint'**
+  String get network;
+
+  /// No description provided for @noAvailableAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'No available Account'**
+  String get noAvailableAccount;
+
+  /// No description provided for @notRegularPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a regular phone number'**
+  String get notRegularPhoneNumber;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @replaceAccountDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace sensitive information'**
+  String get replaceAccountDetail;
+
+  /// No description provided for @restore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get restore;
+
+  /// No description provided for @restoreDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovering data through WebDAV'**
+  String get restoreDescription;
+
+  /// No description provided for @saveAsDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as Draft'**
+  String get saveAsDraft;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @userName.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get userName;
+
+  /// No description provided for @visibilityHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible to Everyone'**
+  String get visibilityHigh;
+
+  /// No description provided for @visibilityLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible to Teachers Only'**
+  String get visibilityLow;
+
+  /// No description provided for @visibilityMiddle.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible to Teachers and Students Only'**
+  String get visibilityMiddle;
+
+  /// No description provided for @weeklyLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Log'**
+  String get weeklyLog;
+
+  /// No description provided for @workspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Workspace'**
+  String get workspace;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
