@@ -396,6 +396,12 @@ abstract class AppLocalizations {
   /// **'Recovering data through WebDAV'**
   String get restoreDescription;
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
   /// No description provided for @saveAsDraft.
   ///
   /// In en, this message translates to:

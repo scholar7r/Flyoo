@@ -159,6 +159,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get restoreDescription => '通过 WebDAV 恢复数据';
 
   @override
+  String get save => '保存';
+
+  @override
   String get saveAsDraft => '保存为草稿';
 
   @override
@@ -342,6 +345,9 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get restoreDescription => '透過 WebDAV 恢復資料';
+
+  @override
+  String get save => '保存';
 
   @override
   String get saveAsDraft => '儲存為草稿';

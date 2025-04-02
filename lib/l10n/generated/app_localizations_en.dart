@@ -159,6 +159,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get restoreDescription => 'Recovering data through WebDAV';
 
   @override
+  String get save => 'Save';
+
+  @override
   String get saveAsDraft => 'Save as Draft';
 
   @override

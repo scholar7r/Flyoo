@@ -50,6 +50,7 @@
     "replaceAccountDetail": "敏感信息替换",
     "restore": "恢复",
     "restoreDescription": "通过 WebDAV 恢复数据",
+    "save": "保存",
     "saveAsDraft": "保存为草稿",
     "settings": "设置",
     "theme": "主题",

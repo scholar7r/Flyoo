@@ -50,6 +50,7 @@
     "replaceAccountDetail": "Replace sensitive information",
     "restore": "Restore",
     "restoreDescription": "Recovering data through WebDAV",
+    "save": "Save",
     "saveAsDraft": "Save as Draft",
     "settings": "Settings",
     "theme": "Theme",
