@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flyoo/l10n/generated/app_localizations.dart';
 import 'package:flyoo/providers/account_provider.dart';
+import 'package:flyoo/providers/endpoints_provider.dart';
 import 'package:flyoo/providers/settings_provider.dart';
 import 'package:flyoo/screens/home_screen.dart';
 import 'package:flyoo/screens/settings_screen.dart';
@@ -36,6 +37,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => SettingsProvider(prefs)),
         ChangeNotifierProvider(create: (_) => AccountProvider()),
+        ChangeNotifierProvider(create: (_) => EndpointsProvider()),
       ],
       child: const MainApp(),
     ),
@@ -83,10 +85,12 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    // final sharedPrefs = context.watch<SharedPreferences>();
     final settingsProvider = Provider.of<SettingsProvider>(context);
 
     return MaterialApp(
+      // Do not show a debug banner when testing
+      debugShowCheckedModeBanner: false,
+
       // Locale
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -95,7 +99,6 @@ class _MainAppState extends State<MainApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      // locale: preferencesProvider.locale,
       locale: () {
         final parts = settingsProvider.languageCode.split('-');
         return parts.length == 2
@@ -117,36 +120,70 @@ class _MainAppState extends State<MainApp> {
       // Dark theme or Light theme swither is defined in the settings page
       themeMode: settingsProvider.themeMode,
 
-      home: Scaffold(
-        body: PageView(
-          controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: _pages,
-        ),
-        bottomNavigationBar: Builder(
-          builder: (context) {
-            return NavigationBar(
-              selectedIndex: _selectedPageIndex,
-              onDestinationSelected: _onItemTapped,
-              destinations: [
-                NavigationDestination(
-                  icon: Icon(Icons.dashboard),
-                  label: AppLocalizations.of(context)!.home,
-                ),
+      home: LayoutBuilder(
+        builder: (context, constraints) {
+          bool isLargeScreen = constraints.maxWidth > 800;
 
-                NavigationDestination(
-                  icon: Icon(Icons.work),
-                  label: AppLocalizations.of(context)!.workspace,
-                ),
+          return Scaffold(
+            body: Row(
+              children: [
+                if (isLargeScreen)
+                  NavigationRail(
+                    backgroundColor:
+                        Theme.of(context).colorScheme.onInverseSurface,
+                    elevation: 4,
+                    selectedIndex: _selectedPageIndex,
+                    labelType: NavigationRailLabelType.all,
+                    onDestinationSelected: _onItemTapped,
+                    destinations: [
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.dashboard),
+                        label: Text(AppLocalizations.of(context)!.home),
+                      ),
 
-                NavigationDestination(
-                  icon: Icon(Icons.settings),
-                  label: AppLocalizations.of(context)!.settings,
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.work),
+                        label: Text(AppLocalizations.of(context)!.workspace),
+                      ),
+
+                      NavigationRailDestination(
+                        icon: const Icon(Icons.settings),
+                        label: Text(AppLocalizations.of(context)!.settings),
+                      ),
+                    ],
+                  ),
+                Expanded(
+                  child: PageView(
+                    controller: _pageController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: _pages,
+                  ),
                 ),
               ],
-            );
-          },
-        ),
+            ),
+            bottomNavigationBar:
+                isLargeScreen
+                    ? null
+                    : NavigationBar(
+                      selectedIndex: _selectedPageIndex,
+                      onDestinationSelected: _onItemTapped,
+                      destinations: [
+                        NavigationDestination(
+                          icon: Icon(Icons.dashboard),
+                          label: AppLocalizations.of(context)!.home,
+                        ),
+                        NavigationDestination(
+                          icon: Icon(Icons.work),
+                          label: AppLocalizations.of(context)!.workspace,
+                        ),
+                        NavigationDestination(
+                          icon: Icon(Icons.settings),
+                          label: AppLocalizations.of(context)!.settings,
+                        ),
+                      ],
+                    ),
+          );
+        },
       ),
     );
   }
@@ -157,7 +194,7 @@ class _MainAppState extends State<MainApp> {
       _selectedPageIndex = index;
       _pageController.animateToPage(
         index,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 00),
         curve: Curves.easeInOut,
       );
     });
