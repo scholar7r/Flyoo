@@ -108,11 +108,11 @@ class _MainAppState extends State<MainApp> {
 
       // Defines light and dark themes
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.tealAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.tealAccent,
+          seedColor: Colors.purple,
           brightness: Brightness.dark,
         ),
       ),
