@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)!.settings),
         actions: [
           IconButton(
-            onPressed: () => launchWebUrl("https://t.me/+2P7rLTNKBwVlMzU1"),
+            onPressed: () => launchWebUrl("https://t.me/flyoo_pub"),
             icon: Icon(Icons.telegram),
             tooltip: AppLocalizations.of(context)!.joinGroup,
           ),

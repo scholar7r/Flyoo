@@ -194,7 +194,7 @@ class _MainAppState extends State<MainApp> {
       _selectedPageIndex = index;
       _pageController.animateToPage(
         index,
-        duration: const Duration(milliseconds: 00),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
     });
