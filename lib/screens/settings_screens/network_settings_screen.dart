@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyoo/l10n/generated/app_localizations.dart';
+import 'package:flyoo/providers/endpoints_provider.dart';
 import 'package:flyoo/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ class NetworkSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
+    final endpointsProvider = Provider.of<EndpointsProvider>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.network)),
@@ -30,36 +32,34 @@ class NetworkSettingsScreen extends StatelessWidget {
 
           Divider(height: 0),
 
-          // TODO: Here should be a list of textfields for users to put there
-          // custom API endpoints in.
           _buildCustomEndpointTile(
             context,
             AppLocalizations.of(context)!.login,
-            "https://example.org/login",
+            endpointsProvider.accountLogin,
             settingsProvider,
           ),
           _buildCustomEndpointTile(
             context,
             AppLocalizations.of(context)!.accountDetail,
-            "https://example.org/account",
+            endpointsProvider.accountDetail,
             settingsProvider,
           ),
           _buildCustomEndpointTile(
             context,
             AppLocalizations.of(context)!.clockInAndClockOut,
-            "https://example.org/clock",
+            endpointsProvider.accountClock,
             settingsProvider,
           ),
           _buildCustomEndpointTile(
             context,
             AppLocalizations.of(context)!.logs,
-            "https://example.org/logs",
+            endpointsProvider.accountLogPush,
             settingsProvider,
           ),
           _buildCustomEndpointTile(
             context,
             AppLocalizations.of(context)!.attendance,
-            "https://example.org/history",
+            endpointsProvider.accountAttendance,
             settingsProvider,
           ),
         ],
