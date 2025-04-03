@@ -9,25 +9,13 @@ import 'package:flyoo/providers/settings_provider.dart';
 import 'package:flyoo/services/security/information_secure.dart';
 import 'package:provider/provider.dart';
 
-class AccountCard extends StatefulWidget {
+class AccountCard extends StatelessWidget {
   final Account account;
+  final bool _isDoingClock = false;
+
+  final AttendanceStatus _attendanceStatus = AttendanceStatus.notClockedIn;
 
   const AccountCard({super.key, required this.account});
-
-  @override
-  State<AccountCard> createState() => _AccountCardState();
-}
-
-enum AttendanceStatus {
-  notClockedIn,
-  clockedInNoNeedOut,
-  clockedInNeedOut,
-  clockedOut,
-}
-
-class _AccountCardState extends State<AccountCard> {
-  final bool _isDoingClock = false;
-  final AttendanceStatus _attendanceStatus = AttendanceStatus.notClockedIn;
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +31,13 @@ class _AccountCardState extends State<AccountCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.account.accountAlias,
+                  account.accountAlias,
                   style: TextStyle(fontWeight: FontWeight.w600),
                 ),
                 Text(
                   settingsProvider.sensitiveVisible
-                      ? securePhoneNumber(widget.account.accountName)
-                      : widget.account.accountName,
+                      ? securePhoneNumber(account.accountName)
+                      : account.accountName,
                 ),
               ],
             ),
@@ -99,7 +87,7 @@ class _AccountCardState extends State<AccountCard> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return LocateDialog(account: widget.account);
+                            return LocateDialog(account: account);
                           },
                         );
                         break;
@@ -108,7 +96,7 @@ class _AccountCardState extends State<AccountCard> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return AccountEditDialog(account: widget.account);
+                            return AccountEditDialog(account: account);
                           },
                         );
                         break;
@@ -117,7 +105,7 @@ class _AccountCardState extends State<AccountCard> {
                         showDialog(
                           context: context,
                           builder: (context) {
-                            return AttendanceDialog(account: widget.account);
+                            return AttendanceDialog(account: account);
                           },
                         );
                         break;
@@ -127,7 +115,7 @@ class _AccountCardState extends State<AccountCard> {
                           context: context,
                           builder: (context) {
                             return AccountDeleteConfirmDialog(
-                              account: widget.account,
+                              account: account,
                             );
                           },
                         );
@@ -200,4 +188,11 @@ class _AccountCardState extends State<AccountCard> {
   Future<void> _handleClockAction() async {
 
   }
+}
+
+enum AttendanceStatus {
+  notClockedIn,
+  clockedInNoNeedOut,
+  clockedInNeedOut,
+  clockedOut,
 }
